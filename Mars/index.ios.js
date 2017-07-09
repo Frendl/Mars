@@ -11,29 +11,23 @@ import {
   Text,
   View
 } from 'react-native';
+import App from './App/app'
 
 export default class Mars extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+      <View style={{flex: 1}}>
+        <App />
       </View>
     );
   }
 }
 
+/*
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+//    height: null,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
@@ -44,10 +38,14 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   instructions: {
+    flex: 1,
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
   },
 });
+*/
 
 AppRegistry.registerComponent('Mars', () => Mars);
+
+// style={styles.welcome}
