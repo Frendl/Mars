@@ -4,9 +4,17 @@ import {
     FlatList,
     StyleSheet,
     Text,
-    Image
+    Image,
+    StatusBar
 } from 'react-native';
+
 import Item from './item.js'
+import Order from './order.js'
+
+
+let SolDate = '103'
+let Camera = 'MAST'
+
 
 export default class App extends Component {
     constructor(props) {
@@ -14,10 +22,11 @@ export default class App extends Component {
         this.state = {
             MarsImages: []
         }
+
     }
     componentDidMount() {
         //let url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=' + '999' + 'MAST' + '&api_key=' + 'a1vxn94JAg11UtnooLxGQKwbSYpk85ml24xtqYAB'
-        fetch('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=' + '103' + 'MAST' + '&api_key=' + 'a1vxn94JAg11UtnooLxGQKwbSYpk85ml24xtqYAB')
+        fetch('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=' + SolDate + Camera + '&api_key=' + 'a1vxn94JAg11UtnooLxGQKwbSYpk85ml24xtqYAB')
             .then((response) => response.json())
             .then((responseJson) => {
                 console.log(responseJson)
@@ -35,7 +44,9 @@ export default class App extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, marginTop: 20 }}>
+            <View style={{ flex: 1, marginTop: 20, backgroundColor: '#111111' }}>
+                <StatusBar barStyle="dark-content" />
+                <Order SolDate={SolDate} Camera={Camera}/>
                 <FlatList
                     keyExtractor={item => item.id}
                     data={this.state.MarsImages}

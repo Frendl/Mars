@@ -17,13 +17,12 @@ export default class Item extends Component {
         let uri = this.props.item.item.img_src
         uri = uri.replace("http", "https")
         return (
-            <View style={{ flex: 1, height: 100 }}>
+            <View style={{ flex: 1, height:300 }}>
                 <Image
-                    style={{ width: 180, height: 180, backgroundColor: 'black' }}
-                    resizeMode={Image.resizeMode.contain}
+                    style={{ flex: 1, height: 300, backgroundColor: 'black' }}
+                    cover={Image.resizeMode.contain}
                     source={{ uri: uri }}
                 />
-                <Text> {this.props.item.item.img_src} </Text>
                 <Text> {this.props.item.item.id} </Text>
             </View>
         );
