@@ -23,14 +23,30 @@ export default class App extends Component {
         this.state = {
             MarsImages: [],
             //            Pull: {
-            //               Camera: '',
+               camera: 'FHAZ',
             //              SolDate: '103'
         }
         //            Camera: 'MAST',
         //            SolDate: '103'
     }
 
+    componentDidMount() {
+        this.refetchPhotos()
+    }
 
+    refetchPhotos() {
+        NASAAPI.fetchPhotos(this.state.camera, (json) => {
+            this.setState({ MarsImages: json.photos })
+        })
+    }
+
+    newCamera(newCamera){
+        this.setState({ camera: newCamera }, () => {
+            this.refetchPhotos()
+        })
+    }
+
+    
 /*
     componentDidMount() {
         //let url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=' + '999' + 'MAST' + '&api_key=' + 'a1vxn94JAg11UtnooLxGQKwbSYpk85ml24xtqYAB'
@@ -56,7 +72,7 @@ render() {
     return (
         <View style={{ flex: 1, marginTop: 20, backgroundColor: '#111111' }}>
             <StatusBar barStyle="dark-content" />
-            <Order />
+            <Order camera={this.state.camera} onChange={this.newCamera.bind(this)} />
             <FlatList
                 keyExtractor={item => item.id}
                 data={this.state.MarsImages}
