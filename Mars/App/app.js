@@ -10,6 +10,7 @@ import {
 
 import Item from './item.js'
 import Order from './order.js'
+import NASAAPI from './api.js'
 
 
 //let SolDate = '103'
@@ -21,15 +22,16 @@ export default class App extends Component {
         super()
         this.state = {
             MarsImages: [],
-            Pull: {
-                Camera: '',
-                SolDate: '103'
-            }
-//            Camera: 'MAST',
-//            SolDate: '103'
+            //            Pull: {
+            //               Camera: '',
+            //              SolDate: '103'
         }
-
+        //            Camera: 'MAST',
+        //            SolDate: '103'
     }
+
+
+/*
     componentDidMount() {
         //let url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=' + '999' + 'MAST' + '&api_key=' + 'a1vxn94JAg11UtnooLxGQKwbSYpk85ml24xtqYAB'
         fetch('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=' + this.state.Pull.SolDate + this.state.Pull.Camera + '&api_key=' + 'a1vxn94JAg11UtnooLxGQKwbSYpk85ml24xtqYAB')
@@ -47,36 +49,26 @@ export default class App extends Component {
             });
         // this is a Promise, learn it. Fetch is also explained in the react native doc.
     }
+*/
 
-    order() {
-        <View style={{ flex: 0, height: 200 }}>
-            <Picker itemStyle={{ color: 'white' }}
-                selectedValue={this.state.Pull.Camera}
-                onValueChange={(itemValue, itemIndex) => this.setState({ Camera: itemValue })}>
-                <Picker.Item color='white' label="Front Hazard Avoidance Camera" value="FHAZ" />
-                <Picker.Item color='white' label="Navigation Camera" value="NAVCAM" />
-            </Picker>
+
+render() {
+    return (
+        <View style={{ flex: 1, marginTop: 20, backgroundColor: '#111111' }}>
+            <StatusBar barStyle="dark-content" />
+            <Order />
+            <FlatList
+                keyExtractor={item => item.id}
+                data={this.state.MarsImages}
+                renderItem={this.renderItem.bind(this)}
+            />
         </View>
-    }
-
-    render() {
-        return (
-            <View style={{ flex: 1, marginTop: 20, backgroundColor: '#111111' }}>
-                <StatusBar barStyle="dark-content" />
-                <Order />
-                <FlatList
-                    keyExtractor={item => item.id}
-                    data={this.state.MarsImages}
-                    renderItem={this.renderItem.bind(this)}
-                />
-            </View>
-        );
-    }
-
-    renderItem(item) {
-        return (
-            <Item item={item}/>
-        )
-    }
+    );
 }
 
+renderItem(item) {
+    return (
+        <Item item={item} />
+    )
+}
+}
