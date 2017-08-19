@@ -11,6 +11,7 @@ import {
 import Item from './item.js'
 import Order from './order.js'
 import NASAAPI from './api.js'
+import Sol from './sol.js'
 
 
 //let SolDate = '103'
@@ -23,8 +24,9 @@ export default class App extends Component {
         this.state = {
             MarsImages: [],
             //            Pull: {
-               camera: 'FHAZ',
-            //              SolDate: '103'
+            camera: 'FHAZ',
+            solDate: '1000'
+            
         }
         //            Camera: 'MAST',
         //            SolDate: '103'
@@ -40,51 +42,58 @@ export default class App extends Component {
         })
     }
 
-    newCamera(newCamera){
+    newCamera(newCamera) {
         this.setState({ camera: newCamera }, () => {
             this.refetchPhotos()
         })
     }
 
-    
-/*
-    componentDidMount() {
-        //let url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=' + '999' + 'MAST' + '&api_key=' + 'a1vxn94JAg11UtnooLxGQKwbSYpk85ml24xtqYAB'
-        fetch('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=' + this.state.Pull.SolDate + this.state.Pull.Camera + '&api_key=' + 'a1vxn94JAg11UtnooLxGQKwbSYpk85ml24xtqYAB')
-            .then((response) => response.json())
-            .then((responseJson) => {
-                console.log(responseJson)
-                if (responseJson) {
-                    console.log(responseJson)
-                    this.setState({ MarsImages: responseJson.photos })
-                    // store.raw = responseJson.raw
-                }
-            })
-            .catch((error) => {
-                console.error(error)
-            });
-        // this is a Promise, learn it. Fetch is also explained in the react native doc.
+    newSolDate(newSolDate) {
+        this.setState({ solDate: newSolDate }, () => {
+            this.refetchPhotos()
+        })
     }
-*/
 
 
-render() {
-    return (
-        <View style={{ flex: 1, marginTop: 20, backgroundColor: '#111111' }}>
-            <StatusBar barStyle="dark-content" />
-            <Order camera={this.state.camera} onChange={this.newCamera.bind(this)} />
-            <FlatList
-                keyExtractor={item => item.id}
-                data={this.state.MarsImages}
-                renderItem={this.renderItem.bind(this)}
-            />
-        </View>
-    );
-}
+    /*
+        componentDidMount() {
+            //let url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=' + '999' + 'MAST' + '&api_key=' + 'a1vxn94JAg11UtnooLxGQKwbSYpk85ml24xtqYAB'
+            fetch('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=' + this.state.Pull.SolDate + this.state.Pull.Camera + '&api_key=' + 'a1vxn94JAg11UtnooLxGQKwbSYpk85ml24xtqYAB')
+                .then((response) => response.json())
+                .then((responseJson) => {
+                    console.log(responseJson)
+                    if (responseJson) {
+                        console.log(responseJson)
+                        this.setState({ MarsImages: responseJson.photos })
+                        // store.raw = responseJson.raw
+                    }
+                })
+                .catch((error) => {
+                    console.error(error)
+                });
+            // this is a Promise, learn it. Fetch is also explained in the react native doc.
+        }
+    */
 
-renderItem(item) {
-    return (
-        <Item item={item} />
-    )
-}
+
+    render() {
+        return (
+            <View style={{ flex: 1, marginTop: 20, backgroundColor: '#111111' }}>
+                <StatusBar barStyle="dark-content" />
+                <Sol solDate={this.state.solDate} onChange={this.newSolDate.bind(this)} />
+                <Order camera={this.state.camera} onChange={this.newCamera.bind(this)} />
+                <FlatList
+                    keyExtractor={item => item.id}
+                    data={this.state.MarsImages}
+                    renderItem={this.renderItem.bind(this)}
+                />
+            </View>
+        );
+    }
+
+    renderItem(item) {
+        return (
+            <Item item={item} />
+        )
+    }
 }

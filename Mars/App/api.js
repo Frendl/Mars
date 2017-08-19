@@ -1,10 +1,12 @@
 class NASAAPI {
 
-    fetchPhotos(camera, callback) {
+    fetchPhotos( camera, solDate, callback) {
         if (camera != '') {
             camera = '&camera=' + camera
         }
-        let sol = '1000'
+
+        let sol = solDate
+
         let apiKey = 'a1vxn94JAg11UtnooLxGQKwbSYpk85ml24xtqYAB'
 
         let url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=' + sol + camera + '&api_key=' + apiKey
