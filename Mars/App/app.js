@@ -38,10 +38,7 @@ export default class App extends Component {
     }
 
     refetchPhotos() {
-        NASAAPI.fetchPhotos(this.state.camera, (json) => {
-            this.setState({ MarsImages: json.photos })
-        })
-        NASAAPI.fetchPhotos(this.state.solDate, (json) => {
+        NASAAPI.fetchPhotos(this.state.camera, this.state.solDate, (json) => {
             this.setState({ MarsImages: json.photos })
         })
     }
