@@ -32,12 +32,16 @@ export default class App extends Component {
         //            SolDate: '103'
     }
 
+
     componentDidMount() {
         this.refetchPhotos()
     }
 
     refetchPhotos() {
         NASAAPI.fetchPhotos(this.state.camera, (json) => {
+            this.setState({ MarsImages: json.photos })
+        })
+        NASAAPI.fetchPhotos(this.state.solDate, (json) => {
             this.setState({ MarsImages: json.photos })
         })
     }

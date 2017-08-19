@@ -16,20 +16,20 @@ export default class Sol extends Component {
         };
     }
 
-    handleValueChange(itemValue) {
-        console.log("ItemValue ", itemValue)
-        this.setState({ solDate: itemValue })
-        this.props.onChange(itemValue)
+    handleValueChange(value) {
+        console.log("ItemValue ", value)
+        this.setState({ solDate: value })
+        this.props.onChange(value)
     }
 
     render() {
         return (
             <TextInput
             style={{height: 30, borderColor: 'white', borderWidth: 1, color: 'white'}}
-            onChangeText={(solDate) => this.setState({solDate})}
+            onChangeText={(this.handleValueChange.bind(this))}
             value={this.state.solDate}
             />
         );
     }
-    
+
 }
