@@ -24,7 +24,7 @@ export default class Order extends Component {
 
     render() {
         return (
-            <View style={{ flex: 0, height: 200 }}>
+            <View style={{ flex: 0, height: 175 }}>
                 <Picker itemStyle={{ color: 'white' }}
                     selectedValue={this.state.camera}
                     onValueChange={this.handleValueChange.bind(this)}>

@@ -24,7 +24,7 @@ export default class Item extends Component {
                     cover={Image.resizeMode.contain}
                     source={{ uri: uri }}
                 />
-                <Text> {this.props.item.item.id} </Text>
+                <Text style={{ color: 'white' }}> {this.props.item.item.id} </Text>
             </View>
         );
     }

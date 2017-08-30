@@ -79,15 +79,15 @@ export default class App extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, marginTop: 20, backgroundColor: '#111111' }}>
-                <StatusBar barStyle="dark-content" />
-                <Sol solDate={this.state.solDate} onChange={this.newSolDate.bind(this)} />
-                <Order camera={this.state.camera} onChange={this.newCamera.bind(this)} />
+            <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
+                <StatusBar barStyle="light-content" />
                 <FlatList
                     keyExtractor={item => item.id}
                     data={this.state.MarsImages}
                     renderItem={this.renderItem.bind(this)}
                 />
+                <Sol solDate={this.state.solDate} onChange={this.newSolDate.bind(this)} />
+                <Order camera={this.state.camera} onChange={this.newCamera.bind(this)} />
             </View>
         );
     }
