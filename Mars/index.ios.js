@@ -12,12 +12,13 @@ import {
   View
 } from 'react-native';
 import App from './App/app'
+import Title from './App/title'
 
 export default class Mars extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <App />
+        <Title />
       </View>
     );
   }
