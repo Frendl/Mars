@@ -4,7 +4,8 @@ import {
     StyleSheet,
     Image,
     Text,
-    StatusBar
+    StatusBar,
+    TouchableOpacity
 } from 'react-native';
 
 
@@ -16,11 +17,13 @@ export default class Title extends Component {
                 <Text style={styles.Title}>
                     Mars
                 </Text>
-                <Image 
+                <TouchableOpacity style={styles.circle} onPress={this._onPressButton}>
+                    <Image 
                     style={styles.planet}
 //                    source={{uri: './img/Mars.jpg' }}
                       source={require('./img/Mars.jpg')}
-                />
+                    />
+                </TouchableOpacity>
                 <Text style={styles.action}>
                     Press
                 </Text>
@@ -51,6 +54,12 @@ styles = StyleSheet.create({
         width: 300, 
         height: 300
 
+    },
+    circle:  {
+        width: 300,
+        height: 300,
+        borderRadius: 300/2,
+        backgroundColor: '#EE4A4A'
     },
     Title: {
         fontSize: 70,
