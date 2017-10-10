@@ -18,10 +18,10 @@ export default class Title extends Component {
                     Mars
                 </Text>
                 <TouchableOpacity style={styles.circle} onPress={this._onPressButton}>
-                    <Image 
-                    style={styles.planet}
-//                    source={{uri: './img/Mars.jpg' }}
-                      source={require('./img/Mars.jpg')}
+                    <Image
+                        style={styles.planet}
+                        //source={{uri: './img/Mars.jpg' }}
+                        source={require('./img/Mars.jpg')}
                     />
                 </TouchableOpacity>
                 <Text style={styles.action}>
@@ -35,8 +35,6 @@ export default class Title extends Component {
     }
 }
 
-// Issue with padding around the edges, specificlty left and right for the image. Plox fix.
-
 styles = StyleSheet.create({
     page: {
         flex: 1,
@@ -46,19 +44,19 @@ styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 0,
         marginBottom: 0,
-        backgroundColor: 'black',
+        backgroundColor: 'black'
     },
     planet: {
         alignItems: 'center',
         flexDirection: 'row',
-        width: 300, 
+        width: 300,
         height: 300
 
     },
-    circle:  {
+    circle: {
         width: 300,
         height: 300,
-        borderRadius: 300/2,
+        borderRadius: 300 / 2,
         backgroundColor: '#EE4A4A'
     },
     Title: {
