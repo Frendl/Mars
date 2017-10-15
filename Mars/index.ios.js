@@ -18,7 +18,7 @@ export default class Mars extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <Title />
+        <App />
       </View>
     );
   }

@@ -5,7 +5,10 @@ import {
     StyleSheet,
     Text,
     Image,
-    StatusBar
+    StatusBar,
+    TouchableHighlight,
+    Modal,
+    Button
 } from 'react-native';
 
 import Item from './item.js'
@@ -25,8 +28,9 @@ export default class App extends Component {
             MarsImages: [],
             //            Pull: {
             camera: 'FHAZ',
-            solDate: '1000'
-            
+            solDate: '1000',
+            modalVisible: false,
+
         }
         //            Camera: 'MAST',
         //            SolDate: '103'
@@ -56,6 +60,11 @@ export default class App extends Component {
     }
 
 
+    setModalVisible(visible) {
+        this.setState({ modalVisible: visible });
+    } 
+
+
     /*
         componentDidMount() {
             //let url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=' + '999' + 'MAST' + '&api_key=' + 'a1vxn94JAg11UtnooLxGQKwbSYpk85ml24xtqYAB'
@@ -80,14 +89,35 @@ export default class App extends Component {
     render() {
         return (
             <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => { alert("Modal has been closed.") }}
+                >
+                    <View style={{ marginTop: 22 }}>
+                        <Sol solDate={this.state.solDate} onChange={this.newSolDate.bind(this)} />
+                        <Order camera={this.state.camera} onChange={this.newCamera.bind(this)} />
+                        <Button
+                            onPress={setModalVisible()}
+                            title="Close"
+                            color="#222222"
+                            accessibilityLabel="Close this modal with options to show the list of photos picked below."
+                        />
+                    </View>
+                </Modal>
                 <StatusBar barStyle="light-content" />
+                <Button
+                    onPress={setModalVisible()}
+                    title="Photo options"
+                    color="#999999"
+                    accessibilityLabel="Open the Modal for more photo list options."
+                />
                 <FlatList
                     keyExtractor={item => item.id}
                     data={this.state.MarsImages}
                     renderItem={this.renderItem.bind(this)}
                 />
-                <Sol solDate={this.state.solDate} onChange={this.newSolDate.bind(this)} />
-                <Order camera={this.state.camera} onChange={this.newCamera.bind(this)} />
             </View>
         );
     }
