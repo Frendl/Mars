@@ -6,9 +6,8 @@ import {
     Text,
     Image,
     StatusBar,
-    TouchableHighlight,
-    Modal,
-    Button
+    TouchableOpacity,
+    Modal
 } from 'react-native';
 
 import Item from './item.js'
@@ -60,9 +59,9 @@ export default class App extends Component {
     }
 
 
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
-    } 
+    setModal(value) {
+        this.setState({ modalVisible: value })
+    }
 
 
     /*
@@ -95,24 +94,18 @@ export default class App extends Component {
                     visible={this.state.modalVisible}
                     onRequestClose={() => { alert("Modal has been closed.") }}
                 >
-                    <View style={{ marginTop: 22 }}>
+                    <View style={{ marginTop: 25 }}>
                         <Sol solDate={this.state.solDate} onChange={this.newSolDate.bind(this)} />
                         <Order camera={this.state.camera} onChange={this.newCamera.bind(this)} />
-                        <Button
-                            onPress={setModalVisible()}
-                            title="Close"
-                            color="#222222"
-                            accessibilityLabel="Close this modal with options to show the list of photos picked below."
-                        />
+                        <TouchableOpacity onPress={setModal}>
+                            <View style={{ flex: 1, height: 50, backgroundColor: 'skyblue' }} />
+                        </TouchableOpacity>
                     </View>
                 </Modal>
                 <StatusBar barStyle="light-content" />
-                <Button
-                    onPress={setModalVisible()}
-                    title="Photo options"
-                    color="#999999"
-                    accessibilityLabel="Open the Modal for more photo list options."
-                />
+                <TouchableOpacity onPress={setModal}>
+                    <View style={{ flex: 1, height: 50, backgroundColor: 'skyblue' }} />
+                </TouchableOpacity>
                 <FlatList
                     keyExtractor={item => item.id}
                     data={this.state.MarsImages}
