@@ -13,22 +13,42 @@ export default class Container extends Component {
     constructor(props) {
         super()
         this.state = {
-            CurrentScreen: 'title'
+            currentScreen: 'Title'
 
         }
     }
 
-    newScreen(newCamera) {
-        this.setState({ camera: newCamera }, () => {
-            this.refetchPhotos()
-        })
-    }
-
-
-
     render() {
-        return (
-            <this.state.currentScreen />
-        );
+        switch (this.state.screen) {
+            case 'Title':
+                return (
+                    <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
+                        <Title navHandler={this.navHandler.bind(this)} />
+                    </View>
+                )
+                break;
+            case 'App':
+                return (
+                    <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
+                        <App navHandler={this.navHandler.bind(this)} />
+                    </View>
+                )
+                break;
+            default:
+                break;
+        }
     }
+
+navHandler(newScreen) {
+    this.setState({ currentScreen: newScreen })
 }
+
+/*
+
+Switch statements
+
+case statments
+
+if statee.curreent ecreen title
+
+*/

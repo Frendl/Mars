@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    TextInput 
+    TextInput
 } from 'react-native';
 
 
@@ -25,9 +25,9 @@ export default class Sol extends Component {
     render() {
         return (
             <TextInput
-            style={{height: 30, borderColor: '#111111', borderWidth: 1, color: 'white'}}
-            onChangeText={(this.handleValueChange.bind(this))}
-            value={this.state.solDate}
+                style={{ height: 30, borderColor: '#111111', borderWidth: 1, color: 'white' }}
+                onChangeText={(this.handleValueChange.bind(this))}
+                value={this.state.solDate}
             />
         );
     }

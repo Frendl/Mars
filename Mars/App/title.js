@@ -10,6 +10,12 @@ import {
 
 
 export default class Title extends Component {
+    
+navHandler() {
+        console.log("View ", Title)
+        this.setState()
+    }
+
     render() {
         return (
             <View style={styles.page}>
@@ -17,7 +23,7 @@ export default class Title extends Component {
                 <Text style={styles.Title}>
                     Mars
                 </Text>
-                <TouchableOpacity style={styles.circle} onPress={this._onPressButton}>
+                <TouchableOpacity style={styles.circle} onPress={this.navHandler(Title)}>
                     <Image
                         style={styles.planet}
                         //source={{uri: './img/Mars.jpg' }}
@@ -34,6 +40,8 @@ export default class Title extends Component {
         );
     }
 }
+
+
 
 styles = StyleSheet.create({
     page: {
