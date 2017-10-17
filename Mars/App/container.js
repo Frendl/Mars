@@ -19,7 +19,7 @@ export default class Container extends Component {
     }
 
     render() {
-        switch (this.state.screen) {
+        switch (this.state.currentScreen) {
             case 'Title':
                 return (
                     <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
@@ -39,16 +39,8 @@ export default class Container extends Component {
         }
     }
 
-navHandler(newScreen) {
-    this.setState({ currentScreen: newScreen })
+    navHandler(newScreen) {
+        this.setState({ currentScreen: newScreen })
+    }
+
 }
-
-/*
-
-Switch statements
-
-case statments
-
-if statee.curreent ecreen title
-
-*/
