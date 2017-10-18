@@ -28,7 +28,7 @@ export default class App extends Component {
             //            Pull: {
             camera: 'FHAZ',
             solDate: '1000',
-            modalVisible: false,
+            modalVisible: true,
 
         }
         //            Camera: 'MAST',
@@ -60,7 +60,7 @@ export default class App extends Component {
 
 
     setModal(value) {
-        this.setState({ modalVisible: value })
+        this.setState({ modalVisible: "true" })
     }
 
 
@@ -93,17 +93,18 @@ export default class App extends Component {
                     transparent={true}
                     visible={this.state.modalVisible}
                     onRequestClose={() => { alert("Modal has been closed.") }}
+                    blurRadius={1}
                 >
-                    <View style={{ marginTop: 25 }}>
+                    <View style={{ flex:1, marginTop: 25 }}>
                         <Sol solDate={this.state.solDate} onChange={this.newSolDate.bind(this)} />
                         <Order camera={this.state.camera} onChange={this.newCamera.bind(this)} />
-                        <TouchableOpacity onPress={setModal}>
-                            <View style={{ flex: 1, height: 50, backgroundColor: 'skyblue' }} />
+                        <TouchableOpacity onPress={this.setModal.bind(this)} style={{flex:1, width: 200, height: 50}}>
+                            <View style={{ flex: 1, width: 200, height: 50, backgroundColor: 'skyblue' }} />
                         </TouchableOpacity>
                     </View>
                 </Modal>
                 <StatusBar barStyle="light-content" />
-                <TouchableOpacity onPress={setModal}>
+                <TouchableOpacity onPress={!this.setModal.bind(this)} style={{flex:1, width: 200, height: 50}}>
                     <View style={{ flex: 1, height: 50, backgroundColor: 'skyblue' }} />
                 </TouchableOpacity>
                 <FlatList
