@@ -95,17 +95,16 @@ export default class App extends Component {
                     onRequestClose={() => { alert("Modal has been closed.") }}
                     blurRadius={1}
                 >
-                    <View style={{ flex:1, marginTop: 25 }}>
+                    <View style={{ flex: 1, marginTop: 25 }}>
+                        <TouchableOpacity onPress={this.setModal.bind(this)} style={{ flex: 0, width: 20, height: 20, marginTop: 25, backgroundColor: 'red' }}>
+                        </TouchableOpacity>
                         <Sol solDate={this.state.solDate} onChange={this.newSolDate.bind(this)} />
                         <Order camera={this.state.camera} onChange={this.newCamera.bind(this)} />
-                        <TouchableOpacity onPress={this.setModal.bind(this)} style={{flex:1, width: 200, height: 50}}>
-                            <View style={{ flex: 1, width: 200, height: 50, backgroundColor: 'skyblue' }} />
-                        </TouchableOpacity>
                     </View>
                 </Modal>
                 <StatusBar barStyle="light-content" />
-                <TouchableOpacity onPress={!this.setModal.bind(this)} style={{flex:1, width: 200, height: 50}}>
-                    <View style={{ flex: 1, height: 50, backgroundColor: 'skyblue' }} />
+                <TouchableOpacity onPress={!this.setModal.bind(this)} style={{ flex: 1, width: 200, height: 50 }}>
+                    <View style={{ flex: 0, width: 20, height: 20, marginBottom: 25, backgroundColor: 'skyblue' }} />
                 </TouchableOpacity>
                 <FlatList
                     keyExtractor={item => item.id}
