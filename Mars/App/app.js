@@ -12,6 +12,7 @@ import Item from './item.js'
 import Order from './order.js'
 import NASAAPI from './api.js'
 import Sol from './sol.js'
+import Picker from './picker.js'
 
 
 //let SolDate = '103'
@@ -26,7 +27,7 @@ export default class App extends Component {
             //            Pull: {
             camera: 'FHAZ',
             solDate: '1000'
-            
+
         }
         //            Camera: 'MAST',
         //            SolDate: '103'
@@ -79,16 +80,16 @@ export default class App extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
-                <StatusBar barStyle="light-content" />
-                <FlatList
-                    keyExtractor={item => item.id}
-                    data={this.state.MarsImages}
-                    renderItem={this.renderItem.bind(this)}
-                />
-                <Sol solDate={this.state.solDate} onChange={this.newSolDate.bind(this)} />
-                <Order camera={this.state.camera} onChange={this.newCamera.bind(this)} />
-            </View>
+                <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
+                    <StatusBar barStyle="light-content" />
+                    <FlatList
+                        keyExtractor={item => item.id}
+                        data={this.state.MarsImages}
+                        renderItem={this.renderItem.bind(this)}
+                    />
+                    <Sol solDate={this.state.solDate} onChange={this.newSolDate.bind(this)} />
+                    <Order camera={this.state.camera} onChange={this.newCamera.bind(this)} />
+                </View>
         );
     }
 
