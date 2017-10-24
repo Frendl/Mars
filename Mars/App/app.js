@@ -9,10 +9,9 @@ import {
 } from 'react-native';
 
 import Item from './item.js'
-import Order from './order.js'
 import NASAAPI from './api.js'
-import Sol from './sol.js'
-import Picker from './picker.js'
+import List from './list.js'
+import Options from './options.js'
 
 
 //let SolDate = '103'
@@ -56,7 +55,6 @@ export default class App extends Component {
         })
     }
 
-
     /*
         componentDidMount() {
             //let url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=' + '999' + 'MAST' + '&api_key=' + 'a1vxn94JAg11UtnooLxGQKwbSYpk85ml24xtqYAB'
@@ -81,26 +79,14 @@ export default class App extends Component {
     render() {
         return (
             <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
-                <StatusBar barStyle="light-content" />
-                <FlatList
-                    keyExtractor={item => item.id}
-                    data={this.state.MarsImages}
-                    renderItem={this.renderItem.bind(this)}
+                <List MarsImages={this.state.MarsImages} />
+                <Options
+                    camera={this.state.camera}
+                    solDate={this.state.solDate}
+                    onSolChange={this.newSolDate.bind(this)}
+                    onCamChange={this.newCamera.bind(this)}
                 />
-                <View>
-                    <Sol solDate={this.state.solDate} onChange={this.newSolDate.bind(this)} />
-                    <Order camera={this.state.camera} onChange={this.newCamera.bind(this)} />
-                    <Text style={{ color: '#ffffff' }}>
-                        L:KASDHJ:Fgoi jh
-                    </Text>
-                </View>
             </View>
         );
-    }
-
-    renderItem(item) {
-        return (
-            <Item item={item} />
-        )
     }
 }

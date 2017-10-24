@@ -17,7 +17,7 @@ export default class Sol extends Component {
     }
 
     handleValueChange(value) {
-        console.log("ItemValue ", value)
+        console.log("ItemSolValue ", value)
         this.setState({ solDate: value })
         this.props.onChange(value)
     }
