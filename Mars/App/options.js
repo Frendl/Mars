@@ -5,7 +5,9 @@ import {
     StyleSheet,
     Text,
     Image,
-    StatusBar
+    StatusBar,
+    Modal,
+    TouchableHighlight
 } from 'react-native';
 
 
@@ -24,11 +26,23 @@ export default class Options extends Component {
         super()
         this.state = {
             camera: props.camera,
-            solDate: props.solDate
-
+            solDate: props.solDate,
+            modalVisible: props.modalVisible,
         }
     }
 
+
+/*
+    setModalVisible(visible) {
+        this.setState({ modalVisible: visible });
+    }
+*/
+
+    setModalVisible(visible) {
+        console.log("OptionsModalVisibility", visible)
+        this.setState({ modalVisible: visible })
+        this.props.onModal(visible)
+    }
 
     newCamera(newCamera) {
         console.log("ItemValueInOpts ", newCamera)
@@ -64,9 +78,26 @@ export default class Options extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111', opacity: .5 }}>
-                <Sol solDate={this.state.solDate} onChange={this.newSolDate.bind(this)} />
-                <CamPicker camera={this.state.camera} onChange={this.newCamera.bind(this)} />
+            <View>
+                <Modal
+                    animationType="slide"
+                    transparent={false}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => { alert("Modal has been closed.") }}
+                    style={{ flex: 1, marginTop: 0, backgroundColor: '#111111', opacity: .5 }}
+                >
+                    <View>
+                        <View>
+                            <Sol solDate={this.state.solDate} onChange={this.newSolDate.bind(this)} />
+                            <CamPicker camera={this.state.camera} onChange={this.newCamera.bind(this)} />
+                            <TouchableHighlight onPress={() => {
+                                this.setModalVisible(!this.state.modalVisible)
+                            }}>
+                                <Text>Hide Modal</Text>
+                            </TouchableHighlight>
+                        </View>
+                    </View>
+                </Modal>
             </View>
         );
     }

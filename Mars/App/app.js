@@ -5,7 +5,8 @@ import {
     StyleSheet,
     Text,
     Image,
-    StatusBar
+    StatusBar,
+    TouchableOpacity
 } from 'react-native';
 
 import Item from './item.js'
@@ -25,8 +26,8 @@ export default class App extends Component {
             MarsImages: [],
             //            Pull: {
             camera: 'FHAZ',
-            solDate: '1000'
-
+            solDate: '1000',
+            modalVisible: false
         }
         //            Camera: 'MAST',
         //            SolDate: '103'
@@ -55,6 +56,13 @@ export default class App extends Component {
         })
     }
 
+    modal(visible) {
+        console.log("AppOptionsModalVisibility", visible)
+        this.setState({modalVisible: visible})
+        console.log("PostActionAppOptionsModalVisibility", this.state.modalVisible)
+    }
+
+
     /*
         componentDidMount() {
             //let url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=' + '999' + 'MAST' + '&api_key=' + 'a1vxn94JAg11UtnooLxGQKwbSYpk85ml24xtqYAB'
@@ -79,13 +87,28 @@ export default class App extends Component {
     render() {
         return (
             <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
-                <List MarsImages={this.state.MarsImages} />
-                <Options
-                    camera={this.state.camera}
-                    solDate={this.state.solDate}
-                    onSolChange={this.newSolDate.bind(this)}
-                    onCamChange={this.newCamera.bind(this)}
-                />
+                <View style={{ flex: 1, marginTop: 0 }}>
+                    <List MarsImages={this.state.MarsImages} />
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.modal(true)
+                        }}
+                        style={{ flex: 0, height: 25, width: 75 }}>
+                        <Text>
+                            Here!
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={{ flex: 0, marginTop: 0 }}>
+                    <Options
+                        camera={this.state.camera}
+                        solDate={this.state.solDate}
+                        onSolChange={this.newSolDate.bind(this)}
+                        onCamChange={this.newCamera.bind(this)}
+                        modalVisible={this.state.modalVisible}
+                        onModal={this.modal.bind(this)}
+                    />
+                </View>
             </View>
         );
     }
