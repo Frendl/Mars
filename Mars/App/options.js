@@ -7,7 +7,8 @@ import {
     Image,
     StatusBar,
     Modal,
-    TouchableHighlight
+    TouchableHighlight,
+    TouchableOpacity
 } from 'react-native';
 
 
@@ -32,11 +33,11 @@ export default class Options extends Component {
     }
 
 
-/*
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
-    }
-*/
+    /*
+        setModalVisible(visible) {
+            this.setState({ modalVisible: visible });
+        }
+    */
 
     setModalVisible(visible) {
         console.log("OptionsModalVisibility", visible)
@@ -84,20 +85,30 @@ export default class Options extends Component {
                     transparent={false}
                     visible={this.state.modalVisible}
                     onRequestClose={() => { alert("Modal has been closed.") }}
-                    style={{ flex: 1, marginTop: 0, backgroundColor: '#111111', opacity: .5 }}
                 >
-                    <View>
+                    <View  style={{ flex: 1, backgroundColor: '#111111', justifyContent: 'space-between' }}>
                         <View>
                             <Sol solDate={this.state.solDate} onChange={this.newSolDate.bind(this)} />
                             <CamPicker camera={this.state.camera} onChange={this.newCamera.bind(this)} />
-                            <TouchableHighlight onPress={() => {
-                                this.setModalVisible(!this.state.modalVisible)
-                            }}>
-                                <Text>Hide Modal</Text>
+                            <TouchableHighlight
+                                onPress={() => { this.setModalVisible(!this.state.modalVisible) }}
+                                style={{ alignItems: 'flex-start', justifyContent: 'flex-end', marginLeft: 10, }}>
+                                <Text style={{ color: 'white' }}>
+                                    Hide Modal
+                                </Text>
                             </TouchableHighlight>
                         </View>
                     </View>
                 </Modal>
+                <View style={{ alignItems: 'flex-start', marginLeft: 10, }}>
+                    <TouchableOpacity
+                        onPress={() => { this.setModalVisible(true) }}
+                        style={{ flex: 0, height: 25 }}>
+                        <Text style={{ color: 'white' }}>
+                            Open Modal!
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }

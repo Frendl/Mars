@@ -6,7 +6,6 @@ import {
     Text,
     Image,
     StatusBar,
-    TouchableOpacity
 } from 'react-native';
 
 import Item from './item.js'
@@ -89,15 +88,6 @@ export default class App extends Component {
             <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
                 <View style={{ flex: 1, marginTop: 0 }}>
                     <List MarsImages={this.state.MarsImages} />
-                    <TouchableOpacity
-                        onPress={() => {
-                            this.modal(true)
-                        }}
-                        style={{ flex: 0, height: 25, width: 75 }}>
-                        <Text>
-                            Here!
-                        </Text>
-                    </TouchableOpacity>
                 </View>
                 <View style={{ flex: 0, marginTop: 0 }}>
                     <Options
