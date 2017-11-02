@@ -10,6 +10,8 @@ import {
     TouchableHighlight,
     TouchableOpacity
 } from 'react-native';
+import { BlurView, VibrancyView } from 'react-native-blur';
+
 
 
 import NASAAPI from './api.js'
@@ -82,11 +84,17 @@ export default class Options extends Component {
             <View>
                 <Modal
                     animationType="slide"
-                    transparent={false}
+                    transparent={true}
                     visible={this.state.modalVisible}
                     onRequestClose={() => { alert("Modal has been closed.") }}
                 >
-                    <View  style={{ flex: 1, backgroundColor: '#111111', justifyContent: 'space-between' }}>
+                    <BlurView
+                        style={styles.absolute}
+                        //viewRef={this.state.viewRef} <- For android support only
+                        blurType="light"
+                        blurAmount={1}
+                    />
+                    <View style={{ flex: 1, justifyContent: 'space-between' }}>
                         <View>
                             <Sol solDate={this.state.solDate} onChange={this.newSolDate.bind(this)} />
                             <CamPicker camera={this.state.camera} onChange={this.newCamera.bind(this)} />
@@ -113,3 +121,11 @@ export default class Options extends Component {
         );
     }
 }
+
+
+let styles = StyleSheet.create({
+    absolute: {
+        position: "absolute",
+        top: 0, left: 0, bottom: 0, right: 0,
+    },
+});
