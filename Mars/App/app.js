@@ -12,6 +12,7 @@ import Item from './item.js'
 import NASAAPI from './api.js'
 import List from './list.js'
 import Options from './options.js'
+import TappedItem from './tappedItem.js'
 
 
 //let SolDate = '103'
@@ -26,7 +27,8 @@ export default class App extends Component {
             //            Pull: {
             camera: 'FHAZ',
             solDate: '1000',
-            modalVisible: false
+            modalVisible: false,
+            itemTapped: false
         }
         //            Camera: 'MAST',
         //            SolDate: '103'
@@ -57,10 +59,13 @@ export default class App extends Component {
 
     modal(visible) {
         console.log("AppOptionsModalVisibility", visible)
-        this.setState({modalVisible: visible})
+        this.setState({ modalVisible: visible })
         console.log("PostActionAppOptionsModalVisibility", this.state.modalVisible)
     }
 
+    itemTap(FullScreen) {
+        this.setState({ itemTapped: FullScreen })
+    }
 
     /*
         componentDidMount() {
@@ -84,22 +89,36 @@ export default class App extends Component {
 
 
     render() {
-        return (
-            <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
-                <View style={{ flex: 1, marginTop: 0 }}>
-                    <List MarsImages={this.state.MarsImages} />
+        if (this.state.itemTapped = true) {
+            return (
+                <TappedItem
+                    style={{ flex: 1, marginTop: 0 }}
+                    itemTapped={this.state.itemTapped}
+                    onItemTap={this.itemTap.bind(this)}
+                />
+            )
+        }
+        else {
+            return (
+                <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
+                    <View style={{ flex: 1, marginTop: 0 }}>
+                        <List
+                            MarsImages={this.state.MarsImages}
+                            onItemTap={this.itemTap.bind(this)}
+                        />
+                    </View>
+                    <View style={{ flex: 0, marginTop: 0 }}>
+                        <Options
+                            camera={this.state.camera}
+                            solDate={this.state.solDate}
+                            onSolChange={this.newSolDate.bind(this)}
+                            onCamChange={this.newCamera.bind(this)}
+                            modalVisible={this.state.modalVisible}
+                            onModal={this.modal.bind(this)}
+                        />
+                    </View>
                 </View>
-                <View style={{ flex: 0, marginTop: 0 }}>
-                    <Options
-                        camera={this.state.camera}
-                        solDate={this.state.solDate}
-                        onSolChange={this.newSolDate.bind(this)}
-                        onCamChange={this.newCamera.bind(this)}
-                        modalVisible={this.state.modalVisible}
-                        onModal={this.modal.bind(this)}
-                    />
-                </View>
-            </View>
-        );
+            );
+        }
     }
 }

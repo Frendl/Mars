@@ -34,6 +34,13 @@ export default class Container extends Component {
                     </View>
                 )
                 break;
+            case 'item':
+                return (
+                    <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
+                        <App navHandler={this.navHandler.bind(this)} />
+                    </View>
+                )
+                break;
             default:
                 break;
         }

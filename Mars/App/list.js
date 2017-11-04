@@ -16,6 +16,7 @@ export default class List extends Component {
         super()
         this.state = {
             MarsImages: [],
+            itemTapped: props.itemTapped
         }
     }
 
@@ -23,6 +24,7 @@ export default class List extends Component {
     componentDidMount() {
         this.refetchPhotos()
     }
+    //Fix all of this! I do not see the reason for all these copy functions being in this component. THey aren't even connected to anything.
 
     refetchPhotos() {
         NASAAPI.fetchPhotos(this.state.camera, this.state.solDate, (json) => {
@@ -56,7 +58,10 @@ export default class List extends Component {
 
     renderItem(item) {
         return (
-            <Item item={item} />
+            <Item
+                item={item}
+                // A function call here?
+            />
         )
     }
 }

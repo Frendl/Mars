@@ -6,9 +6,8 @@ import {
     Text
 } from 'react-native';
 
-import TappedItem from './tappedItem.js'
 
-export default class Item extends Component {
+export default class TappedItem extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -21,7 +20,7 @@ export default class Item extends Component {
         this.setState({ itemTapped: FullScreen })
         this.props.onItemTap(FullScreen)
     }
-    // Fix the above to work with the system described in the log
+    // Fix the above to work with the system described in the log (for TappedItem, not Item)
 
 
     render() {
@@ -30,15 +29,14 @@ export default class Item extends Component {
         return (
             <TouchableOpacity
                 //change  this to it's apropriete thing
-                onPress={() => { this.itemTap(this.state.itemTapped) }}
-                style={{ flex: 1, height: 300 }}
+                onPress={() => { this.itemTap(!this.state.itemTapped) }}
+                style={{ flex: 1, marginTop: 0 }}
             >
                 <Image
-                    style={{ flex: 1, height: 300, backgroundColor: 'black' }}
+                    style={{ flex: 1, alignItems: 'center', backgroundColor: 'black' }}
                     cover={Image.resizeMode.contain}
                     source={{ uri: uri }}
                 />
-                <Text style={{ color: 'white' }}> {this.props.item.item.id} </Text>
             </TouchableOpacity>
         );
     }
