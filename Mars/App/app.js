@@ -28,7 +28,9 @@ export default class App extends Component {
             camera: 'FHAZ',
             solDate: '1000',
             modalVisible: false,
-            itemTapped: false
+            itemTapped: false,
+            fullScreen: false,
+            tappedImage: []
         }
         //            Camera: 'MAST',
         //            SolDate: '103'
@@ -63,8 +65,12 @@ export default class App extends Component {
         console.log("PostActionAppOptionsModalVisibility", this.state.modalVisible)
     }
 
-    itemTap(FullScreen) {
-        this.setState({ itemTapped: FullScreen })
+    itemTap(fullScreen) {
+        this.setState({ itemTapped: fullScreen })
+    }
+
+    tappedImage(TappedImage) {
+        this.setState({ tappedImage: TappedImage})
     }
 
     /*
@@ -89,12 +95,12 @@ export default class App extends Component {
 
 
     render() {
-        if (this.state.itemTapped = true) {
+        if (this.state.itemTapped) {
             return (
                 <TappedItem
                     style={{ flex: 1, marginTop: 0 }}
                     itemTapped={this.state.itemTapped}
-                    onItemTap={this.itemTap.bind(this)}
+                    itemTap={this.itemTap.bind(this)}
                 />
             )
         }
@@ -104,7 +110,7 @@ export default class App extends Component {
                     <View style={{ flex: 1, marginTop: 0 }}>
                         <List
                             MarsImages={this.state.MarsImages}
-                            onItemTap={this.itemTap.bind(this)}
+                            TappedImage={this.tappedImage.bind(this)}
                         />
                     </View>
                     <View style={{ flex: 0, marginTop: 0 }}>

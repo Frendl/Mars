@@ -7,6 +7,7 @@ import {
     StatusBar,
     TouchableOpacity
 } from 'react-native';
+import { BlurView } from 'react-native-blur';
 
 
 export default class Title extends Component {
@@ -31,6 +32,11 @@ export default class Title extends Component {
                         style={styles.planet}
                         //source={{uri: './img/Mars.jpg' }}
                         source={require('./img/Mars.jpg')}
+                    />
+                    <BlurView
+                        style={styles.absolute}
+                        blurType="light"
+                        blurAmount={10}
                     />
                 </TouchableOpacity>
                 <Text style={styles.action}>
@@ -85,7 +91,11 @@ styles = StyleSheet.create({
         marginBottom: 22,
         flexDirection: 'row',
         color: '#EE4A4A'
-    }
+    },
+    absolute: {
+        position: "absolute",
+        top: 0, left: 0, bottom: 0, right: 0,
+    },
 })
 
 

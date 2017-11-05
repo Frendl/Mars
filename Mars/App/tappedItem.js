@@ -15,16 +15,16 @@ export default class TappedItem extends Component {
         }
     }
 
-    itemTap(FullScreen) {
-        console.log("TappedImage", FullScreen)
-        this.setState({ itemTapped: FullScreen })
-        this.props.onItemTap(FullScreen)
+    itemTap(itemTapped) {
+        console.log("TappedImage", itemTapped)
+        this.setState({ itemTapped: itemTapped })
+        this.props.itemTap(itemTapped)
     }
     // Fix the above to work with the system described in the log (for TappedItem, not Item)
 
 
     render() {
-        let uri = this.props.item.item.img_src
+        let uri = this.props.itemTapped.item.img_src
         uri = uri.replace("http", "https")
         return (
             <TouchableOpacity

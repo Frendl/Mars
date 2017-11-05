@@ -21,28 +21,37 @@ export default class List extends Component {
     }
 
 
-    componentDidMount() {
-        this.refetchPhotos()
-    }
-    //Fix all of this! I do not see the reason for all these copy functions being in this component. THey aren't even connected to anything.
-
-    refetchPhotos() {
-        NASAAPI.fetchPhotos(this.state.camera, this.state.solDate, (json) => {
-            this.setState({ MarsImages: json.photos })
-        })
+    SendImage(TappedImage) {
+        console.log("TappedImage", TappedImage)
+        this.setState({ itemTapped: TappedImage })
+        this.props.TappedImage(TappedImage)
     }
 
-    newCamera(newCamera) {
-        this.setState({ camera: newCamera }, () => {
+
+    /*
+        componentDidMount() {
             this.refetchPhotos()
-        })
-    }
-
-    newSolDate(newSolDate) {
-        this.setState({ solDate: newSolDate }, () => {
-            this.refetchPhotos()
-        })
-    }
+        }
+        //Fix all of this! I do not see the reason for all these copy functions being in this component. THey aren't even connected to anything.
+    
+        refetchPhotos() {
+            NASAAPI.fetchPhotos(this.state.camera, this.state.solDate, (json) => {
+                this.setState({ MarsImages: json.photos })
+            })
+        }
+    
+        newCamera(newCamera) {
+            this.setState({ camera: newCamera }, () => {
+                this.refetchPhotos()
+            })
+        }
+    
+        newSolDate(newSolDate) {
+            this.setState({ solDate: newSolDate }, () => {
+                this.refetchPhotos()
+            })
+        }
+    */
 
     render() {
         return (
@@ -60,7 +69,8 @@ export default class List extends Component {
         return (
             <Item
                 item={item}
-                // A function call here?
+                TappedImage={this.SendImage.bind(this)}
+            // A function call here?
             />
         )
     }

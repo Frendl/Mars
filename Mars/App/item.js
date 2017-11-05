@@ -12,14 +12,15 @@ export default class Item extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            itemTapped: props.itemTapped
+            itemTapped: false,
+            Image: []
         }
     }
 
-    itemTap(FullScreen) {
-        console.log("TappedImage", FullScreen)
-        this.setState({ itemTapped: FullScreen })
-        this.props.onItemTap(FullScreen)
+    SendImage(TappedImage) {
+        console.log("TappedImage", TappedImage)
+        this.setState({ itemTapped: TappedImage })
+        this.props.TappedImage(TappedImage)
     }
     // Fix the above to work with the system described in the log
 
@@ -30,7 +31,7 @@ export default class Item extends Component {
         return (
             <TouchableOpacity
                 //change  this to it's apropriete thing
-                onPress={() => { this.itemTap(this.state.itemTapped) }}
+                onPress={() => { this.SendImage(this.uri) }}
                 style={{ flex: 1, height: 300 }}
             >
                 <Image
