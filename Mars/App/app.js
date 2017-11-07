@@ -28,9 +28,8 @@ export default class App extends Component {
             camera: 'FHAZ',
             solDate: '1000',
             modalVisible: false,
-            itemTapped: false,
-            fullScreen: false,
-            tappedImage: []
+            tappedItem: [],
+            fullScreen: false
         }
         //            Camera: 'MAST',
         //            SolDate: '103'
@@ -65,12 +64,14 @@ export default class App extends Component {
         console.log("PostActionAppOptionsModalVisibility", this.state.modalVisible)
     }
 
-    itemTap(fullScreen) {
-        this.setState({ itemTapped: fullScreen })
+    imageTapped(imageTappedFromList) {
+        console.log(imageTappedFromList)
+        this.setState({ tappedItem: imageTappedFromList })
     }
 
-    tappedImage(TappedImage) {
-        this.setState({ tappedImage: TappedImage})
+    fullScreen(switchValue) {
+        console.log(switchValue)
+        this.setState({ fullScreen: switchValue })
     }
 
     /*
@@ -95,12 +96,11 @@ export default class App extends Component {
 
 
     render() {
-        if (this.state.itemTapped) {
+        if (this.state.fullScreen) {
             return (
                 <TappedItem
                     style={{ flex: 1, marginTop: 0 }}
-                    itemTapped={this.state.itemTapped}
-                    itemTap={this.itemTap.bind(this)}
+                    itemTapped={this.state.tappedItem}
                 />
             )
         }
@@ -110,7 +110,9 @@ export default class App extends Component {
                     <View style={{ flex: 1, marginTop: 0 }}>
                         <List
                             MarsImages={this.state.MarsImages}
-                            TappedImage={this.tappedImage.bind(this)}
+                            tappedImage={this.imageTapped.bind(this)}
+                            fullScreenSwitch={this.fullScreen.bind(this)}
+                        //properties should be lower case.
                         />
                     </View>
                     <View style={{ flex: 0, marginTop: 0 }}>

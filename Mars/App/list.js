@@ -15,45 +15,11 @@ export default class List extends Component {
     constructor(props) {
         super()
         this.state = {
-            MarsImages: [],
-            itemTapped: props.itemTapped
         }
     }
-
-
-    SendImage(TappedImage) {
-        console.log("TappedImage", TappedImage)
-        this.setState({ itemTapped: TappedImage })
-        this.props.TappedImage(TappedImage)
-    }
-
-
-    /*
-        componentDidMount() {
-            this.refetchPhotos()
-        }
-        //Fix all of this! I do not see the reason for all these copy functions being in this component. THey aren't even connected to anything.
-    
-        refetchPhotos() {
-            NASAAPI.fetchPhotos(this.state.camera, this.state.solDate, (json) => {
-                this.setState({ MarsImages: json.photos })
-            })
-        }
-    
-        newCamera(newCamera) {
-            this.setState({ camera: newCamera }, () => {
-                this.refetchPhotos()
-            })
-        }
-    
-        newSolDate(newSolDate) {
-            this.setState({ solDate: newSolDate }, () => {
-                this.refetchPhotos()
-            })
-        }
-    */
 
     render() {
+        console.log(this.__proto__)
         return (
             <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
                 <FlatList
@@ -69,7 +35,8 @@ export default class List extends Component {
         return (
             <Item
                 item={item}
-                TappedImage={this.SendImage.bind(this)}
+                tappedImage={this.props.imageTapped}
+                fullScreenSwitch={this.props.fullScreen}
             // A function call here?
             />
         )
