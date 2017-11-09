@@ -11,9 +11,11 @@ export default class TappedItem extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            itemTapped: props.itemTapped
         }
     }
 
+<<<<<<< HEAD
     onItemPress(){
         const switchValue = null
         this.props.fullScreenSwitch(switchValue)
@@ -46,6 +48,8 @@ export default class TappedItem extends Component {
 }
 
 /*
+=======
+>>>>>>> parent of d53fbe9... Add more function to tappable item
     itemTap(itemTapped) {
         console.log("TappedImage", itemTapped)
         this.setState({ itemTapped: itemTapped })
@@ -60,7 +64,7 @@ export default class TappedItem extends Component {
         return (
             <TouchableOpacity
                 //change  this to it's apropriete thing
-                onPress={() => { this.props.onItemTapped }}
+                onPress={() => { this.itemTap(!this.state.itemTapped) }}
                 style={{ flex: 1, marginTop: 0 }}
             >
                 <Image
@@ -72,4 +76,3 @@ export default class TappedItem extends Component {
         );
     }
 }
-*/

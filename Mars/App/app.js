@@ -28,8 +28,9 @@ export default class App extends Component {
             camera: 'FHAZ',
             solDate: '1000',
             modalVisible: false,
-            tappedItem: [],
-            fullScreen: false
+            itemTapped: false,
+            fullScreen: false,
+            tappedImage: []
         }
         //            Camera: 'MAST',
         //            SolDate: '103'
@@ -64,14 +65,18 @@ export default class App extends Component {
         console.log("PostActionAppOptionsModalVisibility", this.state.modalVisible)
     }
 
+<<<<<<< HEAD
     imageTapped(imageTappedFromList) {
         console.log("Tapped Item in App Component",imageTappedFromList)
         this.setState({ tappedItem: imageTappedFromList })
+=======
+    itemTap(fullScreen) {
+        this.setState({ itemTapped: fullScreen })
+>>>>>>> parent of d53fbe9... Add more function to tappable item
     }
 
-    fullScreen(switchValue) {
-        console.log(switchValue)
-        this.setState({ fullScreen: switchValue })
+    tappedImage(TappedImage) {
+        this.setState({ tappedImage: TappedImage})
     }
 
     /*
@@ -96,12 +101,17 @@ export default class App extends Component {
 
 
     render() {
-        if (this.state.fullScreen) {
+        if (this.state.itemTapped) {
             return (
                 <TappedItem
                     style={{ flex: 1, marginTop: 0 }}
+<<<<<<< HEAD
                     tappedItemData={this.state.tappedItem}
                     fullScreenSwitch={this.fullScreen.bind(this)}
+=======
+                    itemTapped={this.state.itemTapped}
+                    itemTap={this.itemTap.bind(this)}
+>>>>>>> parent of d53fbe9... Add more function to tappable item
                 />
             )
         }
@@ -112,9 +122,13 @@ export default class App extends Component {
                     <View style={{ flex: 1, marginTop: 0 }}>
                         <List
                             MarsImages={this.state.MarsImages}
+<<<<<<< HEAD
                             tapImageFunction={this.imageTapped.bind(this)}
                             fullScreenSwitch={this.fullScreen.bind(this)}
                         //properties should be lower case.
+=======
+                            TappedImage={this.tappedImage.bind(this)}
+>>>>>>> parent of d53fbe9... Add more function to tappable item
                         />
                     </View>
                     <View style={{ flex: 0, marginTop: 0 }}>
