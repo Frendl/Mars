@@ -14,20 +14,24 @@ export default class TappedItem extends Component {
         }
     }
 
-    render() {
-        let uri = this.props.item.item.img_src
-        uri = uri.replace("http", "https")
+    onItemPress(){
         const switchValue = null
-        console.log(this)
+        this.props.fullScreenSwitch(switchValue)
+    }
+
+
+    render() {
+        console.log("TappedItem Item this",this)
+        let uri = this.props.tappedItemData.img_src
+        uri = uri.replace("http", "https")
         return (
             <TouchableOpacity
                 //change  this to it's apropriete thing
                 //onPress={() => { this.props.item.item }}
                 //this.Item.props.item.item <-- this is the item you want.
-                onPress={() => {
-                    this.props.imageTapped(this.Item.props.item.item),
-                        this.props.fullScreenSwitch(switchValue)
-                }}
+                onPress={() =>
+                    this.onItemPress()
+                }
                 style={{ flex: 1, height: 300 }}
             >
                 <Image
@@ -35,7 +39,7 @@ export default class TappedItem extends Component {
                     cover={Image.resizeMode.contain}
                     source={{ uri: uri }}
                 />
-                <Text style={{ color: 'white' }}> {this.props.item.item.id} </Text>
+                <Text style={{ color: 'white' }}> {this.props.tappedItemData.id} </Text>
             </TouchableOpacity>
         );
     }

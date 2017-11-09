@@ -19,7 +19,7 @@ export default class List extends Component {
     }
 
     render() {
-        console.log(this.__proto__)
+        console.log(this)
         return (
             <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
                 <FlatList
@@ -34,9 +34,8 @@ export default class List extends Component {
     renderItem(item) {
         return (
             <Item
+                {...this.props}
                 item={item}
-                tappedImage={this.props.imageTapped}
-                fullScreenSwitch={this.props.fullScreen}
             // A function call here?
             />
         )

@@ -16,22 +16,25 @@ export default class Item extends Component {
     }
 
     // Fix the above to work with the system described in the log
+    onItemPress() {
+        const imageTappedFromList = this.props.item.item
+        const switchValue = true
+        console.log("Pressed Item Data:", imageTappedFromList)
+        this.props.tapImageFunction(imageTappedFromList)
+        this.props.fullScreenSwitch(switchValue)
+    }
 
 
     render() {
         let uri = this.props.item.item.img_src
         uri = uri.replace("http", "https")
-        const switchValue = true
         console.log(this)
         return (
             <TouchableOpacity
                 //change  this to it's apropriete thing
                 //onPress={() => { this.props.item.item }}
                 //this.Item.props.item.item <-- this is the item you want.
-                onPress={() => {
-                    this.props.tappedImage(this.props.item.item),
-                        this.props.fullScreenSwitch(switchValue)
-                }}
+                onPress={this.onItemPress.bind(this)}
                 style={{ flex: 1, height: 300 }}
             >
                 <Image

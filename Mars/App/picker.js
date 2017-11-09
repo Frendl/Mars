@@ -24,8 +24,8 @@ export default class CamPicker extends Component {
 
     render() {
         return (
-            <View style={{ flex: 0, height: 175 }}>
-                <Picker itemStyle={{ color: 'white' }}
+            <View style={styles.pickerViewStyle}>
+                <Picker itemStyle={styles.pickerStyle}
                     selectedValue={this.state.camera}
                     onValueChange={this.handleValueChange.bind(this)}>
                     <Picker.Item color='white' label="All Cameras" value="" />
@@ -41,6 +41,15 @@ export default class CamPicker extends Component {
         );
     }
 }
+
+let styles= StyleSheet.create({
+    pickerViewStyle:{
+    },
+    pickerStyle:{
+        color: 'white',
+        // backgroundColor: 'blue'
+    }
+});
 
 /*
 order() {

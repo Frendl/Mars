@@ -65,7 +65,7 @@ export default class App extends Component {
     }
 
     imageTapped(imageTappedFromList) {
-        console.log(imageTappedFromList)
+        console.log("Tapped Item in App Component",imageTappedFromList)
         this.setState({ tappedItem: imageTappedFromList })
     }
 
@@ -100,17 +100,19 @@ export default class App extends Component {
             return (
                 <TappedItem
                     style={{ flex: 1, marginTop: 0 }}
-                    itemTapped={this.state.tappedItem}
+                    tappedItemData={this.state.tappedItem}
+                    fullScreenSwitch={this.fullScreen.bind(this)}
                 />
             )
         }
         else {
+            console.log("App's State tappedItem object", this.state.tappedItem)
             return (
                 <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
                     <View style={{ flex: 1, marginTop: 0 }}>
                         <List
                             MarsImages={this.state.MarsImages}
-                            tappedImage={this.imageTapped.bind(this)}
+                            tapImageFunction={this.imageTapped.bind(this)}
                             fullScreenSwitch={this.fullScreen.bind(this)}
                         //properties should be lower case.
                         />
