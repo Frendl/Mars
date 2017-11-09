@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    TextInput
+    TextInput,
+    StyleSheet
 } from 'react-native';
 
 
@@ -25,11 +26,22 @@ export default class Sol extends Component {
     render() {
         return (
             <TextInput
-                style={{ height: 30, borderColor: '#111111', borderWidth: 1, color: 'white' }}
+                style={styles.solDateStyle}
                 onChangeText={(this.handleValueChange.bind(this))}
                 value={this.state.solDate}
             />
         );
     }
-
 }
+
+
+let styles = StyleSheet.create({
+    solDateStyle: {
+        marginTop: 50,
+        height: 30,
+        borderColor: '#111111',
+        borderWidth: 1,
+        color: 'white',
+        backgroundColor: '#00000020'
+    }
+});
