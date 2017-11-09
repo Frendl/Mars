@@ -8,6 +8,8 @@ import {
     TouchableOpacity
 } from 'react-native';
 import { BlurView } from 'react-native-blur';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
+const myIcon = (<Icon name="rocket" size={45} color="white" />)
 
 
 export default class Title extends Component {
@@ -33,10 +35,8 @@ export default class Title extends Component {
                         //source={{uri: './img/Mars.jpg' }}
                         source={require('./img/Mars.jpg')}
                     />
+                    {myIcon}
                 </TouchableOpacity>
-                <Text style={styles.action}>
-                    Press
-                </Text>
                 <Text style={styles.bottom}>
                     A NASA Rover mission
                 </Text>
@@ -67,7 +67,7 @@ styles = StyleSheet.create({
         width: 300,
         height: 300,
         borderRadius: 300 / 2,
-        backgroundColor: '#EE4A4A'
+        backgroundColor: 'black'
     },
     Title: {
         fontSize: 70,

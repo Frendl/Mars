@@ -11,6 +11,8 @@ import {
     TouchableOpacity
 } from 'react-native';
 import { BlurView, VibrancyView } from 'react-native-blur';
+import Icon from 'react-native-vector-icons/FontAwesome';
+const myIcon = (<Icon name="trash" size={45} color="white" />)
 
 
 
@@ -113,9 +115,7 @@ export default class Options extends Component {
                         <TouchableHighlight
                             onPress={() => { this.setModalVisible(!this.state.modalVisible) }}
                             style={{ alignItems: 'flex-start', justifyContent: 'flex-end', marginLeft: 10, }}>
-                            <Text style={styles.hideModalStyle}>
-                                Hide Modal
-                            </Text>
+                            {myIcon}
                         </TouchableHighlight>
                     </View>
                 </Modal >
@@ -158,3 +158,13 @@ let styles = StyleSheet.create({
         backgroundColor: 'red'
     }
 });
+
+
+
+/*
+
+<Text style={styles.hideModalStyle}>
+                                Hide Modal
+</Text>
+
+*/
