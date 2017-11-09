@@ -33,6 +33,11 @@ export default class Title extends Component {
                         //source={{uri: './img/Mars.jpg' }}
                         source={require('./img/Mars.jpg')}
                     />
+                    <BlurView
+                        style={styles.absolute}
+                        blurType="light"
+                        blurAmount={10}
+                    />
                 </TouchableOpacity>
                 <Text style={styles.action}>
                     Press

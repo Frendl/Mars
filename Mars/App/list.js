@@ -55,9 +55,13 @@ export default class List extends Component {
 
     render() {
 <<<<<<< HEAD
+<<<<<<< HEAD
         console.log(this)
 =======
 >>>>>>> parent of d53fbe9... Add more function to tappable item
+=======
+        console.log(this.__proto__)
+>>>>>>> parent of d63aae1... Make Images Tappable to a full screen view, add minor Styling
         return (
             <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
                 <FlatList
@@ -72,12 +76,16 @@ export default class List extends Component {
     renderItem(item) {
         return (
             <Item
-                {...this.props}
                 item={item}
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
                 TappedImage={this.SendImage.bind(this)}
 >>>>>>> parent of d53fbe9... Add more function to tappable item
+=======
+                tappedImage={this.props.imageTapped}
+                fullScreenSwitch={this.props.fullScreen}
+>>>>>>> parent of d63aae1... Make Images Tappable to a full screen view, add minor Styling
             // A function call here?
             />
         )

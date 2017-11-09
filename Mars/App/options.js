@@ -91,21 +91,21 @@ export default class Options extends Component {
                     <BlurView
                         style={styles.absolute}
                         //viewRef={this.state.viewRef} <- For android support only
-                        blurType="dark"
+                        blurType="light"
                         blurAmount={1}
                     />
-                    <View style={styles.inModalView}>
-
-                        <Sol solDate={this.state.solDate} onChange={this.newSolDate.bind(this)} />
-                        <CamPicker camera={this.state.camera} onChange={this.newCamera.bind(this)} />
-
-                        <TouchableHighlight
-                            onPress={() => { this.setModalVisible(!this.state.modalVisible) }}
-                            style={{ alignItems: 'flex-start', justifyContent: 'flex-end', marginLeft: 10, }}>
-                            <Text style={styles.hideModalStyle}>
-                                Hide Modal
+                    <View style={{ flex: 1, justifyContent: 'space-between' }}>
+                        <View>
+                            <Sol solDate={this.state.solDate} onChange={this.newSolDate.bind(this)} />
+                            <CamPicker camera={this.state.camera} onChange={this.newCamera.bind(this)} />
+                            <TouchableHighlight
+                                onPress={() => { this.setModalVisible(!this.state.modalVisible) }}
+                                style={{ alignItems: 'flex-start', justifyContent: 'flex-end', marginLeft: 10, }}>
+                                <Text style={{ color: 'white' }}>
+                                    Hide Modal
                                 </Text>
-                        </TouchableHighlight>
+                            </TouchableHighlight>
+                        </View>
                     </View>
                 </Modal>
                 <View style={{ alignItems: 'flex-start', marginLeft: 10, }}>
@@ -125,19 +125,7 @@ export default class Options extends Component {
 
 let styles = StyleSheet.create({
     absolute: {
-        // backgroundColor: '#ff007040' ,
         position: "absolute",
-        flex: 1,
         top: 0, left: 0, bottom: 0, right: 0,
     },
-    hideModalStyle: {
-        color: 'white',
-        bottom: 5
-    },
-    inModalView: {
-        flex: 1,
-        // backgroundColor: 'red',
-        justifyContent: 'space-between',
-        top: 0, left: 0, bottom: 0, right: 0,
-    }
 });

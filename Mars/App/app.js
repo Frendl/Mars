@@ -67,7 +67,7 @@ export default class App extends Component {
 
 <<<<<<< HEAD
     imageTapped(imageTappedFromList) {
-        console.log("Tapped Item in App Component",imageTappedFromList)
+        console.log(imageTappedFromList)
         this.setState({ tappedItem: imageTappedFromList })
 =======
     itemTap(fullScreen) {
@@ -106,24 +106,31 @@ export default class App extends Component {
                 <TappedItem
                     style={{ flex: 1, marginTop: 0 }}
 <<<<<<< HEAD
+<<<<<<< HEAD
                     tappedItemData={this.state.tappedItem}
                     fullScreenSwitch={this.fullScreen.bind(this)}
 =======
                     itemTapped={this.state.itemTapped}
                     itemTap={this.itemTap.bind(this)}
 >>>>>>> parent of d53fbe9... Add more function to tappable item
+=======
+                    itemTapped={this.state.tappedItem}
+>>>>>>> parent of d63aae1... Make Images Tappable to a full screen view, add minor Styling
                 />
             )
         }
         else {
-            console.log("App's State tappedItem object", this.state.tappedItem)
             return (
                 <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
                     <View style={{ flex: 1, marginTop: 0 }}>
                         <List
                             MarsImages={this.state.MarsImages}
 <<<<<<< HEAD
+<<<<<<< HEAD
                             tapImageFunction={this.imageTapped.bind(this)}
+=======
+                            tappedImage={this.imageTapped.bind(this)}
+>>>>>>> parent of d63aae1... Make Images Tappable to a full screen view, add minor Styling
                             fullScreenSwitch={this.fullScreen.bind(this)}
                         //properties should be lower case.
 =======

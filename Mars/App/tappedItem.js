@@ -16,24 +16,29 @@ export default class TappedItem extends Component {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     onItemPress(){
         const switchValue = null
         this.props.fullScreenSwitch(switchValue)
     }
 
 
+=======
+>>>>>>> parent of d63aae1... Make Images Tappable to a full screen view, add minor Styling
     render() {
-        console.log("TappedItem Item this",this)
-        let uri = this.props.tappedItemData.img_src
+        let uri = this.props.item.item.img_src
         uri = uri.replace("http", "https")
+        const switchValue = null
+        console.log(this)
         return (
             <TouchableOpacity
                 //change  this to it's apropriete thing
                 //onPress={() => { this.props.item.item }}
                 //this.Item.props.item.item <-- this is the item you want.
-                onPress={() =>
-                    this.onItemPress()
-                }
+                onPress={() => {
+                    this.props.imageTapped(this.Item.props.item.item),
+                        this.props.fullScreenSwitch(switchValue)
+                }}
                 style={{ flex: 1, height: 300 }}
             >
                 <Image
@@ -41,7 +46,7 @@ export default class TappedItem extends Component {
                     cover={Image.resizeMode.contain}
                     source={{ uri: uri }}
                 />
-                <Text style={{ color: 'white' }}> {this.props.tappedItemData.id} </Text>
+                <Text style={{ color: 'white' }}> {this.props.item.item.id} </Text>
             </TouchableOpacity>
         );
     }
