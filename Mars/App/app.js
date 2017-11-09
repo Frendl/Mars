@@ -27,7 +27,7 @@ export default class App extends Component {
             //            Pull: {
             camera: 'FHAZ',
             solDate: '1000',
-            modalVisible: false,
+            modalVisible: true,
             tappedItem: [],
             fullScreen: false
         }
@@ -125,6 +125,7 @@ export default class App extends Component {
                             onCamChange={this.newCamera.bind(this)}
                             modalVisible={this.state.modalVisible}
                             onModal={this.modal.bind(this)}
+                            navHandler={this.props.navHandler}
                         />
                     </View>
                 </View>

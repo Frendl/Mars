@@ -60,6 +60,11 @@ export default class Options extends Component {
         this.props.onSolChange(newSolDate)
     }
 
+    backToTitle(){
+        console.log('Back to Title')
+        this.props.navHandler('Title')
+    }
+
     /*
         refetchPhotos() {
             app.refetchPhotos(this.state.camera, this.state.solDate)
@@ -96,9 +101,13 @@ export default class Options extends Component {
                         blurAmount={1}
                     />
                     <View style={styles.inModalView}>
-                        <Text style={styles.backButtonStyle}>
-                            {this.state.backButton}
-                        </Text>
+                        <TouchableOpacity
+                            onPress={() => this.backToTitle()}
+                        >
+                            <Text style={styles.backButtonStyle}>
+                                {this.state.backButton}
+                            </Text>
+                        </TouchableOpacity>
                         <Sol solDate={this.state.solDate} onChange={this.newSolDate.bind(this)} />
                         <CamPicker camera={this.state.camera} onChange={this.newCamera.bind(this)} />
                         <TouchableHighlight
@@ -109,18 +118,18 @@ export default class Options extends Component {
                             </Text>
                         </TouchableHighlight>
                     </View>
-                </Modal>
-                    <View style={{ alignItems: 'flex-start', marginLeft: 10, }}>
-                        <TouchableOpacity
-                            onPress={() => { this.setModalVisible(true) }}
-                            style={{ flex: 0, height: 25 }}>
-                            <Text style={{ color: 'white' }}>
-                                Open Modal!
+                </Modal >
+                <View style={{ alignItems: 'flex-start', marginLeft: 10, }}>
+                    <TouchableOpacity
+                        onPress={() => { this.setModalVisible(true) }}
+                        style={{ flex: 0, height: 25 }}>
+                        <Text style={{ color: 'white' }}>
+                            Open Modal!
                         </Text>
-                        </TouchableOpacity>
-                    </View>
-            </View>
-                );
+                    </TouchableOpacity>
+                </View>
+            </View >
+        );
     }
 }
 
@@ -143,7 +152,7 @@ let styles = StyleSheet.create({
         top: 0, left: 0, bottom: 0, right: 0,
     },
     backButtonStyle: {
-        flex:0,
+        flex: 0,
         color: 'white',
         marginTop: 50,
         backgroundColor: 'red'
