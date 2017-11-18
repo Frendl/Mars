@@ -26,9 +26,6 @@ export default class Title extends Component {
         return (
             <View style={styles.page}>
                 <StatusBar barStyle="light-content" />
-                <Text style={styles.Title}>
-                    Mars
-                </Text>
                 <TouchableOpacity style={styles.circle} onPress={this.navHandler.bind(this)}>
                     <Image
                         style={styles.planet}
@@ -37,9 +34,6 @@ export default class Title extends Component {
                     />
                     {myIcon}
                 </TouchableOpacity>
-                <Text style={styles.bottom}>
-                    A NASA Rover mission
-                </Text>
             </View>
         );
     }
@@ -50,8 +44,9 @@ styles = StyleSheet.create({
         flex: 1,
         padding: 0,
         flexDirection: 'column',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
+        alignContent: 'center',
         marginTop: 0,
         marginBottom: 0,
         backgroundColor: 'black'
@@ -67,6 +62,9 @@ styles = StyleSheet.create({
         width: 300,
         height: 300,
         borderRadius: 300 / 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
         backgroundColor: 'black'
     },
     Title: {
@@ -95,6 +93,16 @@ styles = StyleSheet.create({
 
 
 /*
+
+                <Text style={styles.Title}>
+                    Mars
+                </Text>
+
+                <Text style={styles.bottom}>
+                    The NASA Mars Rover missions
+                </Text>
+
+
 let colors = {
     Space: '#EE4A4A'
 }
