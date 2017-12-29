@@ -5,7 +5,8 @@ import {
     Image,
     Text,
     StatusBar,
-    TouchableOpacity
+    TouchableWithoutFeedback,
+    Animated
 } from 'react-native';
 import { BlurView } from 'react-native-blur';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
@@ -15,7 +16,18 @@ const myIcon = (<Icon name="rocket" size={45} color="white" />)
 export default class Title extends Component {
     constructor(props) {
         super()
+        this.state = {
+            marsImageSize: new Animated.Value(0)
+        }
     }
+
+    componentDidMount() {
+        Animated.decay(this.state.marsImageSize, {
+            toValue: 300,
+            duration: 10000
+        }).start();
+    }
+
 
     navHandler() {
         this.props.navHandler("App")
@@ -26,14 +38,25 @@ export default class Title extends Component {
         return (
             <View style={styles.page}>
                 <StatusBar barStyle="light-content" />
-                <TouchableOpacity style={styles.circle} onPress={this.navHandler.bind(this)}>
-                    <Image
-                        style={styles.planet}
-                        //source={{uri: './img/Mars.jpg' }}
-                        source={require('./img/Mars.jpg')}
-                    />
-                    {myIcon}
-                </TouchableOpacity>
+                <View>
+                    <Text style={styles.Title}>
+                        Mars
+                    </Text>
+                </View>
+                <Animated.View style={{...this.props.style, width: this.state.marsImageSize, height: this.state.marsImageSize }}>
+                    <TouchableWithoutFeedback style={styles.circle} onPress={this.navHandler.bind(this)}>
+                        <View style={styles.circle}>
+                            <Image
+                                style={styles.planet}
+                                //source={{ uri: './img/Mars.jpg' }}
+                                source={require('./img/Mars.jpg')}
+                            />
+                            <Text style={styles.Paragraph}>
+                                Press Mars
+                    </Text>
+                        </View>
+                    </TouchableWithoutFeedback>
+                </Animated.View>
             </View>
         );
     }
@@ -51,27 +74,41 @@ styles = StyleSheet.create({
         marginBottom: 0,
         backgroundColor: 'black'
     },
-    planet: {
-        alignItems: 'center',
-        flexDirection: 'row',
-        width: 300,
-        height: 300
-
-    },
     circle: {
         width: 300,
         height: 300,
-        borderRadius: 300 / 2,
+//        borderRadius: 300 / 2,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',
-        backgroundColor: 'black'
+        backgroundColor: 'black',
+    },
+    planet: {
+        flexDirection: 'absolute',
+        alignItems: 'center',
+        flexDirection: 'row',
+        flex: 1,
+//        borderRadius: 1 / 2,
+//        position: "absolute",
+//        top: 0, left: 0, bottom: 0, right: 0,
+    },
+    TitleFrame: {
+
     },
     Title: {
         fontSize: 70,
-        marginTop: 70,
+        marginBottom: 77,
         flexDirection: 'row',
         color: '#EE4A4A'
+    },
+    Paragraph: {
+        fontSize: 15,
+        color: '#EE4A4A',
+        backgroundColor: '#FFFFFF00',
+        justifyContent: 'center',
+        alignContent: 'center',
+        alignItems: 'center'
     },
     action: {
         fontSize: 10,
