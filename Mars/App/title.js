@@ -6,7 +6,8 @@ import {
     Text,
     StatusBar,
     TouchableWithoutFeedback,
-    Animated
+    Animated,
+    Easing
 } from 'react-native';
 import { BlurView } from 'react-native-blur';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
@@ -17,15 +18,20 @@ export default class Title extends Component {
     constructor(props) {
         super()
         this.state = {
-            marsImageSize: new Animated.Value(0)
+            marsImageSize: new Animated.Value(0),
+            marsTitleTransparencyFade: new Animated.Value()
         }
     }
 
     componentDidMount() {
-        Animated.decay(this.state.marsImageSize, {
-            toValue: 300,
-            duration: 10000
-        }).start();
+        Animated.timing(
+            this.state.marsImageSize,
+            {
+                toValue: 300,
+                duration: 5000,
+                easing: Easing.linear
+            }
+        ).start();
     }
 
 
@@ -38,25 +44,25 @@ export default class Title extends Component {
         return (
             <View style={styles.page}>
                 <StatusBar barStyle="light-content" />
-                <View>
-                    <Text style={styles.Title}>
-                        Mars
+                <Text style={{
+                    fontSize: 70,
+                    marginTop: 70,
+                    flexDirection: 'row',
+                    color: '#EE4A4A',
+                }}>
+                    Mars
                     </Text>
-                </View>
-                <Animated.View style={{...this.props.style, width: this.state.marsImageSize, height: this.state.marsImageSize }}>
-                    <TouchableWithoutFeedback style={styles.circle} onPress={this.navHandler.bind(this)}>
-                        <View style={styles.circle}>
-                            <Image
-                                style={styles.planet}
-                                //source={{ uri: './img/Mars.jpg' }}
-                                source={require('./img/Mars.jpg')}
-                            />
-                            <Text style={styles.Paragraph}>
-                                Press Mars
-                    </Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                </Animated.View>
+                <TouchableWithoutFeedback style={styles.circle} onPress={this.navHandler.bind(this)}>
+                    <Animated.View style={{ ...this.props.style }}>
+
+                        <Animated.Image
+                            style={{ width: this.state.marsImageSize, height: this.state.marsImageSize }}
+                            //source={{ uri: './img/Mars.jpg' }}
+                            source={require('./img/Mars.jpg')}
+                        />
+                    </Animated.View>
+                </TouchableWithoutFeedback>
+                <View style={styles.BottomViewStyle} />
             </View>
         );
     }
@@ -65,11 +71,9 @@ export default class Title extends Component {
 styles = StyleSheet.create({
     page: {
         flex: 1,
-        padding: 0,
         flexDirection: 'column',
-        justifyContent: 'center',
         alignItems: 'center',
-        alignContent: 'center',
+        justifyContent: 'space-between',
         marginTop: 0,
         marginBottom: 0,
         backgroundColor: 'black'
@@ -77,30 +81,34 @@ styles = StyleSheet.create({
     circle: {
         width: 300,
         height: 300,
-//        borderRadius: 300 / 2,
-        flex: 1,
+        //        borderRadius: 300 / 2,
         justifyContent: 'center',
         alignItems: 'center',
-        alignContent: 'center',
-        backgroundColor: 'black',
+        backgroundColor: 'red',
+        position: 'absolute'
     },
     planet: {
         flexDirection: 'absolute',
         alignItems: 'center',
         flexDirection: 'row',
         flex: 1,
-//        borderRadius: 1 / 2,
-//        position: "absolute",
-//        top: 0, left: 0, bottom: 0, right: 0,
+        //        borderRadius: 1 / 2,
+        //        position: "absolute",
+        //        top: 0, left: 0, bottom: 0, right: 0,
     },
     TitleFrame: {
 
     },
     Title: {
-        fontSize: 70,
-        marginBottom: 77,
+        //        fontSize: 70,
+        //        marginBottom: 77,
+        //        flexDirection: 'row',
+        //        color: '#EE4A4A'
+    },
+    BottomViewStyle: {
+        marginBottom: 70,
         flexDirection: 'row',
-        color: '#EE4A4A'
+        //        color: 'red'
     },
     Paragraph: {
         fontSize: 15,

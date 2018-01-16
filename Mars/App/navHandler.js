@@ -9,7 +9,7 @@ import App from './app.js'
 
 
 
-export default class Container extends Component {
+export default class NavHandler extends Component {
     constructor(props) {
         super()
         this.state = {
