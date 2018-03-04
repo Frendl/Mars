@@ -28,8 +28,8 @@ export default class Title extends Component {
             this.state.marsImageSize,
             {
                 toValue: 300,
-                duration: 5000,
-                easing: Easing.linear
+                duration: 2700,
+                easing: Easing.linear.elastic
             }
         ).start();
     }

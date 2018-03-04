@@ -3,7 +3,8 @@ import {
     TouchableOpacity,
     StyleSheet,
     Image,
-    Text
+    Text,
+    View
 } from 'react-native';
 
 import TappedItem from './tappedItem.js'
@@ -43,7 +44,10 @@ export default class Item extends Component {
                     cover={Image.resizeMode.contain}
                     source={{ uri: uri }}
                 />
-                <Text style={{ color: 'white' }}> {this.props.item.item.id} </Text>
+                <View style={{ flex:0, height: 20, backgroundColor: 'black', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Text style={{ color: 'white' }}> {this.props.item.item.id} </Text>
+                    <Text style={{ color: 'white', }}> {this.props.item.item.earth_date} </Text>
+                </View>
             </TouchableOpacity>
         );
     }
