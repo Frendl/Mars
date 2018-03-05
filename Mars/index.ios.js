@@ -14,14 +14,14 @@ import {
 } from 'react-native';
 import App from './App/app'
 import Title from './App/title'
-import Container from './App/container.js'
+import NavHandler from './App/navHandler.js'
 
 export default class Mars extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
         <StatusBar barStyle="light-content" />
-        <Container />
+        <NavHandler />
       </View>
     );
   }

@@ -16,7 +16,7 @@ export default class TappedItem extends Component {
     }
 
     onItemPress(){
-        const switchValue = null
+        const switchValue = false
         this.props.fullScreenSwitch(switchValue)
     }
 

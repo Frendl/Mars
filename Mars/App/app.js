@@ -6,6 +6,7 @@ import {
     Text,
     Image,
     StatusBar,
+    Modal
 } from 'react-native';
 
 import Item from './item.js'
@@ -27,7 +28,7 @@ export default class App extends Component {
             //            Pull: {
             camera: 'FHAZ',
             solDate: '1000',
-            modalVisible: true,
+            modalVisible: false,
             tappedItem: [],
             fullScreen: false
         }
@@ -65,7 +66,7 @@ export default class App extends Component {
     }
 
     imageTapped(imageTappedFromList) {
-        console.log("Tapped Item in App Component",imageTappedFromList)
+        console.log("Tapped Item in App Component", imageTappedFromList)
         this.setState({ tappedItem: imageTappedFromList })
     }
 
@@ -96,40 +97,56 @@ export default class App extends Component {
 
 
     render() {
-        if (this.state.fullScreen) {
-            return (
-                <TappedItem
+        console.log("App's State tappedItem object", this.state.tappedItem)
+        return (
+            <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
+                <View style={{ flex: 0 }}>
+                    <Modal
+                        animationType="fade"
+                        transparent={false}
+                        visible={this.state.fullScreen}
+                        onRequestClose={() => { alert("Modal has been closed.") }}
+                        style={{ flex: 0 }}
+                    >
+                        <View style={{ flex: 1 }}>
+                            <TappedItem
+                                style={{ flex: 1, marginTop: 0 }}
+                                tappedItemData={this.state.tappedItem}
+                                fullScreenSwitch={this.fullScreen.bind(this)}
+                            />
+                        </View>
+                    </Modal>
+                </View>
+                <View style={{ flex: 1, marginTop: 0 }}>
+                    <List
+                        MarsImages={this.state.MarsImages}
+                        tapImageFunction={this.imageTapped.bind(this)}
+                        fullScreenSwitch={this.fullScreen.bind(this)}
+                    //properties should be lower case.
+                    />
+                </View>
+                <View style={{ flex: 0, marginTop: 0 }}>
+                    <Options
+                        camera={this.state.camera}
+                        solDate={this.state.solDate}
+                        onSolChange={this.newSolDate.bind(this)}
+                        onCamChange={this.newCamera.bind(this)}
+                        modalVisible={this.state.modalVisible}
+                        onModal={this.modal.bind(this)}
+                        navHandler={this.props.navHandler}
+                    />
+                </View>
+            </View>
+        );
+    }
+}
+
+/*
+
+<TappedItem
                     style={{ flex: 1, marginTop: 0 }}
                     tappedItemData={this.state.tappedItem}
                     fullScreenSwitch={this.fullScreen.bind(this)}
                 />
-            )
-        }
-        else {
-            console.log("App's State tappedItem object", this.state.tappedItem)
-            return (
-                <View style={{ flex: 1, marginTop: 0, backgroundColor: '#111111' }}>
-                    <View style={{ flex: 1, marginTop: 0 }}>
-                        <List
-                            MarsImages={this.state.MarsImages}
-                            tapImageFunction={this.imageTapped.bind(this)}
-                            fullScreenSwitch={this.fullScreen.bind(this)}
-                            //properties should be lower case.
-                        />
-                    </View>
-                    <View style={{ flex: 0, marginTop: 0 }}>
-                        <Options
-                            camera={this.state.camera}
-                            solDate={this.state.solDate}
-                            onSolChange={this.newSolDate.bind(this)}
-                            onCamChange={this.newCamera.bind(this)}
-                            modalVisible={this.state.modalVisible}
-                            onModal={this.modal.bind(this)}
-                            navHandler={this.props.navHandler}
-                        />
-                    </View>
-                </View>
-            );
-        }
-    }
-}
+
+*/
