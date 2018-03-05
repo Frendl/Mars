@@ -1,13 +1,13 @@
 # Mars
 
-It’s Mars on your phone. This React Native application calls NASA’s mars rover mission api, and formats the returned JSON for your red planet exploration needs.
+It’s Mars on your phone. This React Native application calls NASA’s Mars Rover Photo API, and formats the returned JSON for your red planet exploration needs.
 
 ## Purpose for building the application:
    Simply, to personally use and explore the features of react native in practice. 
 
 ## Application features:
    * View lists of stunning images from NASA’s mars rover mission.
-   * Select through each mission SOL Date (Solar date) to view images from.
+   * Select through each Mars SOL Date (Mars Solar date) to view images from.
    * Filter which cameras’ images you want to see.
 
 ## Planned application features:
@@ -45,4 +45,4 @@ To have the application ready and approved for the App Store.
 
 ## Notes to the user:
 Some of the SOL dates and camera options do not bring back any images, keep this in mind if your selection results in a dry off-black screen.
-The images taken on this mission may be some of the first few products made on mars. Neat.
+The images taken on this mission may be some of the first few products made on Mars. Neat.
